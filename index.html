@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+    <meta charset="UTF-8">
+    <title>Kalkulator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 40px;
+            text-align: center;
+        }
+
+        input {
+            width: 100px;
+            padding: 6px;
+            font-size: 16px;
+            margin: 5px;
+        }
+
+        .button-grid {
+            margin: 10px 0;
+        }
+
+        button {
+            padding: 10px 12px;
+            margin: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Online Kalkulator</h2>
+
+    <div>
+        <input type="number" id="operand1" placeholder="operand1">
+    </div>
+    <div>
+        <input type="number" id="operand2" placeholder="operand2">
+    </div>
+
+    <div class="button-grid">
+        <button onclick="izracunaj('+')">+</button>
+        <button onclick="izracunaj('-')">-</button>
+        <button onclick="izracunaj('*')">*</button>
+        <button onclick="izracunaj('/')">/</button>
+    </div>
+
+    <div class="button-grid">
+        <button onclick="izracunaj('sin')">sin</button>
+        <button onclick="izracunaj('cos')">cos</button>
+        <button onclick="izracunaj('tan')">tan</button>
+    </div>
+
+    <div class="button-grid">
+        <button onclick="izracunaj('ln')">ln</button>
+        <button onclick="izracunaj('log')">log</button>
+    </div>
+
+    <div class="button-grid">
+        <button onclick="izracunaj('^2')">^2</button>
+        <button onclick="izracunaj('^3')">^3</button>
+        <button onclick="izracunaj('^n')">^n</button>
+    </div>
+
+    <script>
+        function izracunaj(op) {
+            const op1 = parseFloat(document.getElementById("operand1").value);
+            const op2 = parseFloat(document.getElementById("operand2").value);
+            let rezultat;
+
+            switch (op) {
+                case '+':
+                    rezultat = op1 + op2;
+                    break;
+                case '-':
+                    rezultat = op1 - op2;
+                    break;
+                case '*':
+                    rezultat = op1 * op2;
+                    break;
+                case '/':
+                    rezultat = op2 !== 0 ? op1 / op2 : "Greška: Dijeljenje s nulom!";
+                    break;
+                case 'sin':
+                    rezultat = Math.sin(op1);
+                    break;
+                case 'cos':
+                    rezultat = Math.cos(op1);
+                    break;
+                case 'tan':
+                    rezultat = Math.tan(op1);
+                    break;
+                case 'ln':
+                    rezultat = op1 > 0 ? Math.log(op1) : "Greška: ln samo za pozitivne brojeve!";
+                    break;
+                case 'log':
+                    rezultat = op1 > 0 ? Math.log10(op1) : "Greška: log samo za pozitivne brojeve!";
+                    break;
+                case '^2':
+                    rezultat = Math.pow(op1, 2);
+                    break;
+                case '^3':
+                    rezultat = Math.pow(op1, 3);
+                    break;
+                case '^n':
+                    rezultat = Math.pow(op1, op2);
+                    break;
+                default:
+                    rezultat = "Nepoznata operacija";
+            }
+
+            alert("Rezultat: " + rezultat);
+        }
+    </script>
+
+</body>
+</html>
